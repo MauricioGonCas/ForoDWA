@@ -31,7 +31,7 @@ public class UsuarioController {
 		//boolean res=servicioUsuario.validar(correoe, clave,sesion);
 		//if (res) {
 			
-			return "redirect:temas/listar";
+			return "redirect:/temas/listar";
 		//}
 		
 		//modelo.addAttribute("error",servicioUsuario.getMensaje());
@@ -54,7 +54,7 @@ public class UsuarioController {
 		boolean res=servicioUsuario.agregar(user, clave,sesion);
 		if (res) {
 			
-			return "redirect:temas/listar";
+			return "redirect:/temas/listar";
 		}
 		
 		modelo.addAttribute("error",servicioUsuario.getMensaje());
