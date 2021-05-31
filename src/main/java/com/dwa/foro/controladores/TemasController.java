@@ -40,7 +40,6 @@ public class TemasController {
 		else
 		{
 			modelo.addAttribute("error","Aún no hay temas registrados..");
-			return "temas/listar";
 		}
 		
 		modelo.addAttribute("tema", new Tema());
