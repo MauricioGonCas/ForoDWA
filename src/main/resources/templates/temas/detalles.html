@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Lista de replicas.</title>
+<!--Bootstrap-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <!--SCRIPTS-->
+    <!--Jquery-->
+    <script src="/js/jquery-3.0.0.min.js"></script>
+
+    <!--Pooper-->
+    <script src="/js/popper.min.js"></script>
+
+    <!--Bootstrap-->
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="display-4" th:text="'Réplicas de: '+*{tema}"></h1>
+			<p th:text="*{mesaje}" class="lead"></p>
+			<hr class="my-4">
+			
+			<div th:replace="/fragmentos :: navbar"></div>
+			
+			<p class="text-danger"></p>
+			
+			<div th:if="*{error!=null}"
+					class="alert alert-warning alert-dismissible fade show" role="alert">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<h4 th:text=*{error}></h4>
+			</div>
+
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10">
+					<div th:if="*{replicas != null}">
+						<div th:each="replica : ${replicas}" class="card mb-4">
+							<h5 th:text="${replica.contenido}"></h5>
+							<label th:text="'Enviado por: '+ ${replica.usuario.alias}"></label>
+						</div>
+					</div>
+				</div>
+				<div class="col-1"></div>
+			</div>
+			
+			<div class="row">
+				<div class="col-3"></div>
+				<div class="col-6">
+					
+					
+					<form action="#" th:action="@{/temas/agregarreplica}" th:object="${replica}" method="post">
+						<fieldset>
+						<legend>Responder..</legend>
+						
+						<textarea cols="50" rows="4" quired="required" th:field="*{contenido}"
+						class="form-control" placeholder="Máximo 400 caracteres." maxlength="400" ></textarea>
+						
+						<input type="hidden" th:field="*{tema}"/>
+						
+						<p>
+							<input type="submit" value="Registrar"/>
+							<input type="reset" value="Limpiar"/>
+						</p>
+						</fieldset>
+					</form>
+				
+					
+				</div>
+				
+				<div class="col-3"></div>
+			</div>
+				<hr class="my-4">
+				
+				<div class="row">
+					<div class="col-2"></div>
+					<div class="col-8">
+						<p>Desarrollo de Aplicaciones Web- Mauricio González Castelán.</p>
+                         <p>ITSSNP-13-04-2021</p>
+					</div>
+					<div class="col-2"></div>
+				</div>
+			
+		</div>
+	</div>
+</body>
+</html>
